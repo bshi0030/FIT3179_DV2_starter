@@ -1,0 +1,9 @@
+location,state,hotspot_type,postcode,longitude,latitude
+Toowoomba,QLD,Top volume,4350,151.9539,-27.5598
+Mackay,QLD,Top volume,4740,149.1868,-21.1411
+Point Cook,VIC,Top volume,3030,144.75,-37.913
+Sydney,NSW,Top volume per capita,2000,151.2093,-33.8688
+Macleay Island,QLD,Top per capita + top growth,4184,153.36,-27.61
+Alexandria,NSW,Top volume per capita,2015,151.198,-33.909
+Fraser Rise,VIC,Top growth,3336,144.72,-37.7
+Pinjarra,WA,Top growth,6208,115.883,-32.63

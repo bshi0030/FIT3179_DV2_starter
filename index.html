@@ -26,23 +26,163 @@
     <section class="story-section">
       <p class="section-number">01</p>
       <h2>A changing wallet</h2>
-      <p class="lead">Australian household spending has shifted substantially since 2012. Before looking at what people buy, we first need to see how the overall wallet has changed.</p>
+      <p class="lead">Before looking at how Australians shop, we first need to understand how the household wallet itself has changed. The charts below move from the overall spending trend to the categories competing for a larger share of that wallet.</p>
 
       <article class="chart-card">
         <div class="chart-copy">
           <h3>Australian household spending, 2012–2026</h3>
-          <p>Seasonally adjusted monthly household spending. Hover over the line for the monthly value and year-on-year change.</p>
+          <p>Seasonally adjusted monthly household spending. Hover over the line to inspect each month and its year-on-year change.</p>
         </div>
         <div id="chart01" class="chart"></div>
-        <p class="source">Source: Australian Bureau of Statistics, Monthly Household Spending Indicator. 2026 is available to July.</p>
+        <div class="insight">
+          <p>
+          <strong>The big disruption:</strong>
+          household spending fell sharply in 2020 before recovering and
+          reaching substantially higher levels in the following years.
+          </p>
+        </div>
+        <p class="source">Source: Australian Bureau of Statistics, Monthly Household Spending Indicator. Data currently run to July 2026.</p>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>What Australians spend on has not moved evenly</h3>
+          <p>Transport, food and recreation increasingly dominate household expenditure, while clothing remains a comparatively small share of the wallet.</p>
+        </div>
+        <div id="chart02" class="chart"></div>
+        <div class="insight">
+          <p>
+            <strong>Not all categories moved together:</strong>
+            food, transport and recreation account for some of the strongest
+            expenditure levels, while categories such as clothing remain
+            comparatively smaller.
+          </p>
+        </div>
+        <p class="source">Source: Australian Bureau of Statistics, Monthly Household Spending Indicator, COICOP categories.</p>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>Which categories dominate the household wallet?</h3>
+          <p>The ranking chart tracks how each category moves relative to the others. Click a line or point to highlight one category; double-click to clear the selection.</p>
+        </div>
+        <div id="chart03" class="chart"></div>
+        <p class="source">Source: Australian Bureau of Statistics. Rankings are calculated from full-year annual totals for 2013–2025.</p>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>Needs and wants have followed different paths</h3>
+          <p>ABS separates household spending into discretionary and non-discretionary components. The comparison helps show whether growth is being driven more by optional purchases or more essential spending.</p>
+        </div>
+        <div id="chart04" class="chart"></div>
+        <div class="insight">
+          <p>
+            <strong>Discretionary spending remains larger:</strong>
+            optional purchases experienced a much sharper disruption around
+            2020, while non-discretionary spending followed a steadier path.
+          </p>
+        </div>
+        <p class="source">Source: Australian Bureau of Statistics, seasonally adjusted household spending estimates.</p>
       </article>
     </section>
 
-    <section class="placeholder">
-      <p class="section-number">NEXT</p>
-      <h2>Up next: what Australians spend on</h2>
-      <p>The next implementation step adds the category heatmap and ranking chart using the cleaned CSV files already included in this project.</p>
+    <section class="story-section section-two">
+      <p class="section-number">02</p>
+      <h2>Shopping moves online</h2>
+      <p class="lead">
+        Australians are spending more online, but the digital shift looks different depending on where people live.
+        State growth, total market size and local shopping hotspots reveal three different geographic stories.
+      </p>
+
+      <div class="map-grid">
+        <article class="chart-card">
+          <div class="chart-copy">
+            <h3>Where is online shopping growing fastest?</h3>
+            <p>Colour shows year-on-year growth in online spending across each state and territory in 2025.</p>
+          </div>
+          <div id="chart05" class="chart map-chart"></div>
+          <div class="insight">
+            <p><strong>Western Australia leads:</strong> online spending grew 18% year-on-year, compared with 10% in the ACT.</p>
+          </div>
+          <p class="source">Source: Australia Post eCommerce Report 2026, p. 15.</p>
+        </article>
+
+        <article class="chart-card">
+          <div class="chart-copy">
+            <h3>Where is the online market largest?</h3>
+            <p>Circle size represents total online spending, revealing where the largest digital retail markets are concentrated.</p>
+          </div>
+          <div id="chart06" class="chart map-chart"></div>
+          <div class="insight">
+            <p><strong>Scale and growth tell different stories:</strong> NSW is the largest online market at $26.4b, while WA is growing fastest.</p>
+          </div>
+          <p class="source">Source: Australia Post eCommerce Report 2026, p. 15.</p>
+        </article>
+      </div>
+
+      <article class="chart-card wide-map-card">
+        <div class="chart-copy">
+          <h3>Online-shopping hotspots extend beyond the biggest capitals</h3>
+          <p>Australia Post highlights different locations depending on total parcel volume, shopping activity per person and recent growth.</p>
+        </div>
+        <div id="chart07" class="chart map-chart"></div>
+        <div class="insight">
+          <p><strong>Regional places matter too:</strong> Toowoomba and Mackay rank among the top locations by volume, while Pinjarra and Fraser Rise stand out for growth.</p>
+        </div>
+        <p class="source">Source: Australia Post eCommerce Report 2026, p. 16. Point locations are approximate locality centres used only to position the named postcodes on the map.</p>
+      </article>
+
+      <p class="transition-copy">The geography is only part of the story. Next, we move from <strong>where</strong> Australians shop to <strong>what</strong> they buy and how those choices differ by generation.</p>
     </section>
+
+    <section class="story-section section-three">
+      <p class="section-number">03</p>
+      <h2>Your lifestyle shapes your cart</h2>
+      <p class="lead">
+        Geography is only part of the story. Age, shopping frequency and digital habits also shape how Australians buy.
+        Different generations participate in eCommerce in distinctly different ways, while the categories filling the online cart continue to evolve.
+      </p>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>What fills Australia's online cart?</h3>
+          <p>Rectangle size represents 2025 online spending, while colour intensity shows year-on-year growth. Large categories are not always the fastest growing.</p>
+        </div>
+        <div id="chart08" class="chart treemap-chart"></div>
+        <div class="insight">
+          <p><strong>Biggest does not mean fastest:</strong> online marketplaces attracted the most spending at $18.9b, while books, stationery and multimedia recorded the strongest growth at 24.1%.</p>
+        </div>
+        <p class="source">Source: Australia Post eCommerce Report 2026, p. 12.</p>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>Five generations, five shopping profiles</h3>
+          <p>Each line compares a generation's relative position across four measures. The values are normalised only for visual comparison; hover to see the original figures. Click a generation to highlight it and double-click to reset.</p>
+        </div>
+        <div id="chart09" class="chart"></div>
+        <div class="insight">
+          <p><strong>Digital adoption and spending are not the same thing:</strong> Millennials shop online most frequently and spend the most online, while Gen X records the largest average basket.</p>
+        </div>
+        <p class="source">Source: Australia Post eCommerce Report 2026, pp. 7–8 and 13–14.</p>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>Online is growing, but stores still dominate</h3>
+          <p>The share of spending that occurs online differs by generation, but in-store spending still represents the majority for every group.</p>
+        </div>
+        <div id="chart10" class="chart"></div>
+        <div class="insight">
+          <p><strong>Millennials lead the online shift:</strong> 28.5% of their spending occurs online, compared with 14.3% among Builders. Even so, more than 70% of spending remains in-store for every generation.</p>
+        </div>
+        <p class="source">Source: Australia Post eCommerce Report 2026, p. 13.</p>
+      </article>
+
+      <p class="transition-copy">Shopping habits are changing not only through technology, but also through ideas of <strong>value</strong>. The final section turns to second-hand purchasing and the rise of recommerce.</p>
+    </section>
+
   </main>
 
   <footer class="wrap footer">

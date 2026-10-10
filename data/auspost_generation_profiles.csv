@@ -1,0 +1,21 @@
+generation,metric,metric_order,normalized_score,actual_value,display_value
+Gen Z,Weekly online shopping,1,91.89,44.0,44%
+Gen Z,Online share of spend,2,78.87,25.5,25.5%
+Gen Z,Total online spend,3,42.59,14.6,$14.6b
+Gen Z,Average basket size,4,0.0,81.15,$81.15
+Millennials,Weekly online shopping,1,100.0,47.0,47%
+Millennials,Online share of spend,2,100.0,28.5,28.5%
+Millennials,Total online spend,3,100.0,29.7,$29.7b
+Millennials,Average basket size,4,55.53,94.86,$94.86
+Gen X,Weekly online shopping,1,59.46,32.0,32%
+Gen X,Online share of spend,2,67.61,23.9,23.9%
+Gen X,Total online spend,3,73.38,22.7,$22.7b
+Gen X,Average basket size,4,100.0,105.84,$105.84
+Baby Boomers,Weekly online shopping,1,35.14,23.0,23%
+Baby Boomers,Online share of spend,2,33.8,19.1,19.1%
+Baby Boomers,Total online spend,3,33.46,12.2,$12.2b
+Baby Boomers,Average basket size,4,94.37,104.45,$104.45
+Builders,Weekly online shopping,1,0.0,10.0,10%
+Builders,Online share of spend,2,0.0,14.3,14.3%
+Builders,Total online spend,3,0.0,3.4,$3.4b
+Builders,Average basket size,4,75.66,99.83,$99.83
