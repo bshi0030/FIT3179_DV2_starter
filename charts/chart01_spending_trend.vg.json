@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Australian household spending, seasonally adjusted, July 2012 to July 2026.",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/abs_total_spending.csv"
+  },
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": null,
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "total_million",
+      "type": "quantitative",
+      "title": "Household spending ($ million)",
+      "axis": {
+        "format": ",.0f"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Month",
+        "format": "%B %Y"
+      },
+      {
+        "field": "total_million",
+        "type": "quantitative",
+        "title": "Spending ($m)",
+        "format": ",.1f"
+      },
+      {
+        "field": "total_yoy_pct",
+        "type": "quantitative",
+        "title": "YoY change",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    }
+  }
+}

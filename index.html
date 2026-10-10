@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Australian Shopping Shift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">FIT3179 • DATA VISUALISATION 2</p>
+      <h1>The Australian<br>Shopping Shift</h1>
+      <p class="subtitle">How lifestyle, location and changing priorities are reshaping what Australians buy.</p>
+      <div class="hero-stat"><strong>$82.6B</strong><span>spent online in Australia in 2025</span></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="story-section">
+      <p class="section-number">01</p>
+      <h2>A changing wallet</h2>
+      <p class="lead">Australian household spending has shifted substantially since 2012. Before looking at what people buy, we first need to see how the overall wallet has changed.</p>
+
+      <article class="chart-card">
+        <div class="chart-copy">
+          <h3>Australian household spending, 2012–2026</h3>
+          <p>Seasonally adjusted monthly household spending. Hover over the line for the monthly value and year-on-year change.</p>
+        </div>
+        <div id="chart01" class="chart"></div>
+        <p class="source">Source: Australian Bureau of Statistics, Monthly Household Spending Indicator. 2026 is available to July.</p>
+      </article>
+    </section>
+
+    <section class="placeholder">
+      <p class="section-number">NEXT</p>
+      <h2>Up next: what Australians spend on</h2>
+      <p>The next implementation step adds the category heatmap and ranking chart using the cleaned CSV files already included in this project.</p>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Created for FIT3179 Data Visualisation 2 • 2026</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
