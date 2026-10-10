@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annual ranking of Australian household spending categories, 2013–2025.",
+  "width": "container",
+  "height": 420,
+
+  "data": {
+    "url": "data/abs_category_annual.csv"
+  },
+
+  "transform": [
+    {
+      "filter": "datum.year >= '2013' && datum.year <= '2025'"
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5,
+    "point": {
+      "filled": true,
+      "size": 40
+    }
+  },
+
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {
+        "domain": [9, 1]
+      },
+      "axis": {
+        "tickMinStep": 1
+      }
+    },
+
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "title": "Category"
+    },
+
+    "detail": {
+      "field": "category"
+    },
+
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "rank",
+        "type": "quantitative",
+        "title": "Rank"
+      },
+      {
+        "field": "annual_spending_million",
+        "type": "quantitative",
+        "title": "Annual spending ($m)",
+        "format": ",.0f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Discretionary versus non-discretionary household spending in Australia.",
+  "width": "container",
+  "height": 350,
+  "data": {
+    "url": "data/abs_total_spending.csv"
+  },
+  "transform": [
+    {
+      "fold": [
+        "discretionary_million",
+        "non_discretionary_million"
+      ],
+      "as": [
+        "spending_type",
+        "spending_million"
+      ]
+    },
+    {
+      "calculate": "datum.spending_type === 'discretionary_million' ? 'Discretionary' : 'Non-discretionary'",
+      "as": "type_label"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": null,
+      "axis": {
+        "format": "%Y",
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "spending_million",
+      "type": "quantitative",
+      "title": "Household spending ($ million)",
+      "axis": {
+        "format": ",.0f"
+      }
+    },
+    "color": {
+      "field": "type_label",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "range": [
+          "#c84b31",
+          "#476a6f"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "date",
+        "type": "temporal",
+        "title": "Month",
+        "format": "%B %Y"
+      },
+      {
+        "field": "type_label",
+        "type": "nominal",
+        "title": "Spending type"
+      },
+      {
+        "field": "spending_million",
+        "type": "quantitative",
+        "title": "Spending ($m)",
+        "format": ",.1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "orient": "top"
+    }
+  }
+}

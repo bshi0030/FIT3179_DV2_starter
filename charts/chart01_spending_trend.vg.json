@@ -1,64 +1,127 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Australian household spending, seasonally adjusted, July 2012 to July 2026.",
+
   "width": "container",
   "height": 360,
+
   "data": {
     "url": "data/abs_total_spending.csv"
   },
-  "mark": {
-    "type": "line",
-    "strokeWidth": 2.5
-  },
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "title": null,
-      "axis": {
-        "format": "%Y",
-        "labelAngle": 0,
-        "grid": false
+
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.5,
+        "color": "#4778ad"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": null,
+          "axis": {
+            "format": "%Y",
+            "labelAngle": 0,
+            "grid": false
+          }
+        },
+
+        "y": {
+          "field": "total_million",
+          "type": "quantitative",
+          "title": "Household spending ($ million)"
+        },
+
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "total_million",
+            "type": "quantitative",
+            "title": "Spending ($m)",
+            "format": ",.1f"
+          },
+          {
+            "field": "total_yoy_pct",
+            "type": "quantitative",
+            "title": "YoY change",
+            "format": ".1f"
+          }
+        ]
       }
     },
-    "y": {
-      "field": "total_million",
-      "type": "quantitative",
-      "title": "Household spending ($ million)",
-      "axis": {
-        "format": ",.0f"
+
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2020-04-01"
+          }
+        ]
+      },
+
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 5],
+        "color": "#c84b31"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        }
       }
     },
-    "tooltip": [
-      {
-        "field": "date",
-        "type": "temporal",
-        "title": "Month",
-        "format": "%B %Y"
+
+    {
+      "data": {
+        "values": [
+          {
+            "date": "2020-04-01",
+            "value": 43000,
+            "label": "2020 spending disruption"
+          }
+        ]
       },
-      {
-        "field": "total_million",
-        "type": "quantitative",
-        "title": "Spending ($m)",
-        "format": ",.1f"
+
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#c84b31"
       },
-      {
-        "field": "total_yoy_pct",
-        "type": "quantitative",
-        "title": "YoY change",
-        "format": ".1f"
+
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal"
+        },
+
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "field": "label"
+        }
       }
-    ]
-  },
+    }
+  ],
+
   "config": {
     "view": {
       "stroke": null
-    },
-    "axis": {
-      "labelFont": "Inter",
-      "titleFont": "Inter",
-      "labelFontSize": 12,
-      "titleFontSize": 12
     }
   }
 }

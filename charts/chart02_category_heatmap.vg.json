@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annual Australian household spending by category, 2013-2025.",
+  "width": "container",
+  "height": 360,
+  "data": {
+    "url": "data/abs_category_spending.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.year >= '2013' && datum.year <= '2025'"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Food",
+        "Transport",
+        "Health",
+        "Recreation and culture",
+        "Hotels, cafes and restaurants",
+        "Furnishings and household equipment",
+        "Clothing and footwear",
+        "Alcoholic beverages and tobacco",
+        "Miscellaneous goods and services"
+      ]
+    },
+    "color": {
+      "aggregate": "sum",
+      "field": "spending_million",
+      "type": "quantitative",
+      "title": "Annual spend ($m)",
+      "scale": {
+        "scheme": "oranges"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "aggregate": "sum",
+        "field": "spending_million",
+        "type": "quantitative",
+        "title": "Annual spending ($m)",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans"
+    }
+  }
+}
