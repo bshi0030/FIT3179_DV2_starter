@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Selected Australian online-shopping hotspots identified by Australia Post in 2025.",
+  "width": "container",
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#efe7dc",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/auspost_hotspots_mapped.csv"
+      },
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150,
+        "stroke": "white",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "hotspot_type",
+          "type": "nominal",
+          "title": "Hotspot type",
+          "scale": {
+            "range": [
+              "#c84b31",
+              "#d8995b",
+              "#476a6f",
+              "#7d5a7c"
+            ]
+          }
+        },
+        "shape": {
+          "field": "hotspot_type",
+          "type": "nominal",
+          "title": "Hotspot type"
+        },
+        "tooltip": [
+          {
+            "field": "location",
+            "type": "nominal",
+            "title": "Location"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "postcode",
+            "type": "nominal",
+            "title": "Postcode"
+          },
+          {
+            "field": "hotspot_type",
+            "type": "nominal",
+            "title": "Why it stands out"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "orient": "bottom"
+    }
+  }
+}

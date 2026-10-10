@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Online spending market size by Australian state and territory in 2025.",
+  "width": "container",
+  "height": 430,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australia_states.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#efe7dc",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/state_positions.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state_name",
+          "from": {
+            "data": {
+              "url": "data/auspost_state_spending.csv"
+            },
+            "key": "state_name",
+            "fields": [
+              "state",
+              "online_spend_billion",
+              "yoy_growth_pct"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.78,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5,
+        "color": "#c84b31"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "online_spend_billion",
+          "type": "quantitative",
+          "title": "Online spend ($bn)",
+          "scale": {
+            "range": [
+              100,
+              2600
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state_name",
+            "type": "nominal",
+            "title": "State / territory"
+          },
+          {
+            "field": "online_spend_billion",
+            "type": "quantitative",
+            "title": "Online spend ($bn)",
+            "format": ".1f"
+          },
+          {
+            "field": "yoy_growth_pct",
+            "type": "quantitative",
+            "title": "YoY growth",
+            "format": ".0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans"
+    }
+  }
+}

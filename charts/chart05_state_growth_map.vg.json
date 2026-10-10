@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Year-on-year online spending growth by Australian state and territory in 2025.",
+  "width": "container",
+  "height": 430,
+  "data": {
+    "url": "data/australia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "data/auspost_state_spending.csv"
+        },
+        "key": "state_name",
+        "fields": [
+          "state",
+          "online_spend_billion",
+          "yoy_growth_pct"
+        ]
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator"
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#ffffff",
+    "strokeWidth": 1.2
+  },
+  "encoding": {
+    "color": {
+      "field": "yoy_growth_pct",
+      "type": "quantitative",
+      "title": "YoY growth (%)",
+      "scale": {
+        "scheme": "oranges",
+        "domain": [
+          10,
+          18
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.STATE_NAME",
+        "type": "nominal",
+        "title": "State / territory"
+      },
+      {
+        "field": "online_spend_billion",
+        "type": "quantitative",
+        "title": "Online spend ($bn)",
+        "format": ".1f"
+      },
+      {
+        "field": "yoy_growth_pct",
+        "type": "quantitative",
+        "title": "YoY growth",
+        "format": ".0f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans"
+    }
+  }
+}
