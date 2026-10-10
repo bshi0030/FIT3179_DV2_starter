@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Normalised generational shopping profiles using four Australia Post eCommerce measures.",
+  "width": "container",
+  "height": 430,
+  "data": {"url": "data/auspost_generation_profiles.csv"},
+  "params": [
+    {
+      "name": "highlightGeneration",
+      "select": {"type": "point", "fields": ["generation"], "on": "click", "clear": "dblclick"}
+    }
+  ],
+  "mark": {"type": "line", "point": {"filled": true, "size": 75}, "strokeWidth": 2.8},
+  "encoding": {
+    "x": {
+      "field": "metric",
+      "type": "ordinal",
+      "sort": {"field": "metric_order", "op": "min"},
+      "title": null,
+      "axis": {"labelAngle": 0, "labelLimit": 180, "grid": false}
+    },
+    "y": {
+      "field": "normalized_score",
+      "type": "quantitative",
+      "title": "Relative position within each measure",
+      "scale": {"domain": [0, 100]},
+      "axis": {"values": [0, 25, 50, 75, 100], "labelExpr": "datum.value == 0 ? 'Lowest' : datum.value == 100 ? 'Highest' : ''"}
+    },
+    "color": {
+      "field": "generation",
+      "type": "nominal",
+      "title": "Generation",
+      "scale": {"range": ["#d95b43", "#4f8fb9", "#5f8f78", "#9a6f91", "#b88a4a"]}
+    },
+    "opacity": {
+      "condition": {"param": "highlightGeneration", "value": 1},
+      "value": 0.35
+    },
+    "detail": {"field": "generation"},
+    "tooltip": [
+      {"field": "generation", "title": "Generation"},
+      {"field": "metric", "title": "Measure"},
+      {"field": "display_value", "title": "Actual value"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "DM Sans", "titleFont": "DM Sans", "labelFontSize": 11, "titleFontSize": 12},
+    "legend": {"labelFont": "DM Sans", "titleFont": "DM Sans", "orient": "bottom"}
+  }
+}

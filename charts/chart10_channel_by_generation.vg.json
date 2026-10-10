@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Online versus in-store share of spending by generation in 2025.",
+  "width": "container",
+  "height": 300,
+  "data": {"url": "data/auspost_generations.csv"},
+  "transform": [
+    {"fold": ["online_share_pct", "instore_share_pct"], "as": ["channel", "share"]},
+    {"calculate": "datum.channel === 'online_share_pct' ? 'Online' : 'In-store'", "as": "channel_label"}
+  ],
+  "mark": {"type": "bar", "cornerRadius": 3},
+  "encoding": {
+    "y": {
+      "field": "generation",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Gen Z", "Millennials", "Gen X", "Baby Boomers", "Builders"]
+    },
+    "x": {
+      "field": "share",
+      "type": "quantitative",
+      "stack": "normalize",
+      "title": "Share of spending",
+      "axis": {"format": ".0%"}
+    },
+    "color": {
+      "field": "channel_label",
+      "type": "nominal",
+      "title": null,
+      "scale": {"domain": ["Online", "In-store"], "range": ["#c84b31", "#d8d2c8"]}
+    },
+    "order": {"field": "channel_label", "sort": "ascending"},
+    "tooltip": [
+      {"field": "generation", "title": "Generation"},
+      {"field": "channel_label", "title": "Channel"},
+      {"field": "share", "type": "quantitative", "title": "Share", "format": ".1f"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "DM Sans", "titleFont": "DM Sans", "labelFontSize": 12, "titleFontSize": 12},
+    "legend": {"labelFont": "DM Sans", "titleFont": "DM Sans", "orient": "top"}
+  }
+}

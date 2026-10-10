@@ -1,0 +1,217 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap of Australian online spending categories in 2025.",
+  "width": 980,
+  "height": 520,
+  "padding": 5,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "data": [
+    {
+      "name": "tree",
+      "url": "data/auspost_categories_treemap.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "online_spend_billion": "number",
+          "yoy_growth_pct": "number"
+        }
+      },
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "category",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "online_spend_billion",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.4,
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ],
+          "padding": 3
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "linear",
+      "domain": [
+        10,
+        25
+      ],
+      "range": [
+        "#f3d8cb",
+        "#c84b31"
+      ],
+      "nice": true,
+      "zero": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "tree",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum.depth === 1"
+          }
+        ]
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "cornerRadius": {
+            "value": 5
+          }
+        },
+        "update": {
+          "fill": {
+            "scale": "color",
+            "field": "yoy_growth_pct"
+          },
+          "tooltip": {
+            "signal": "{'Category': datum.category, 'Online spend': '$' + format(datum.online_spend_billion, '.1f') + 'b', 'YoY growth': format(datum.yoy_growth_pct, '.1f') + '%'}"
+          }
+        },
+        "hover": {
+          "fillOpacity": {
+            "value": 0.82
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "tree",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum.depth === 1"
+          }
+        ]
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "(datum.x0 + datum.x1) / 2"
+          },
+          "y": {
+            "signal": "(datum.y0 + datum.y1) / 2 - 8"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "DM Sans"
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fill": {
+            "value": "#202020"
+          },
+          "fontSize": {
+            "signal": "max(10, min(15, (datum.x1-datum.x0)/8))"
+          },
+          "text": {
+            "field": "category"
+          },
+          "limit": {
+            "signal": "max(55, datum.x1-datum.x0-12)"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "tree",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum.depth === 1"
+          }
+        ]
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "(datum.x0 + datum.x1) / 2"
+          },
+          "y": {
+            "signal": "(datum.y0 + datum.y1) / 2 + 13"
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "font": {
+            "value": "DM Sans"
+          },
+          "fill": {
+            "value": "#202020"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "text": {
+            "signal": "'$' + format(datum.online_spend_billion, '.1f') + 'b'"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "title": "YoY growth (%)",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "gradientLength": 220,
+      "titleFont": "DM Sans",
+      "labelFont": "DM Sans"
+    }
+  ]
+}
