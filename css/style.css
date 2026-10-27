@@ -55,3 +55,20 @@ h2{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,5vw,4rem);margin:
 .treemap-chart{min-height:520px;}
 .section-three .chart-card + .chart-card{margin-top:32px;}
 @media(max-width:700px){.treemap-chart{min-height:430px}}
+
+/* Critique revision: typography and single-purpose teal for online spending */
+.chart-copy p,.insight p,.lead,.transition-copy{max-width:70ch}
+.chart-copy p{line-height:1.62}
+.insight{background:#f0f6f4;border-left-color:#267c85}
+.insight strong{color:#205e65}
+.section-four{border-top:1px solid var(--line)}
+.waffle-chart{display:flex;justify-content:center;overflow-x:auto}
+.closing{max-width:70ch;font-size:1.25rem;line-height:1.6;margin:45px auto 0;text-align:center}
+@media(max-width:700px){.waffle-chart{justify-content:flex-start}}
+
+
+/* FIT3179 final polish — append to the end of css/style.css */
+/* Vega-Lite dropdown below Chart 1 */
+#chart01 .vega-bindings { margin-top: 14px; font-family: "DM Sans", sans-serif; font-size: 0.9rem; color: #205e65; }
+#chart01 .vega-bindings select { margin-left: 8px; padding: 8px 32px 8px 12px; border: 1px solid #bfd3d0; border-radius: 8px; background: #f4faf8; color: #173744; font: inherit; cursor: pointer; max-width: 100%; }
+#chart01 .vega-bindings select:focus-visible { outline: 2px solid #267c85; outline-offset: 2px; }

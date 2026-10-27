@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Online spending market size by Australian state and territory in 2025.",
+  "description": "2025 online spending per resident by state: Australia Post totals divided by June 2025 ABS population estimates.",
   "width": "container",
   "height": 430,
   "projection": {
@@ -37,17 +37,19 @@
             "fields": [
               "state",
               "online_spend_billion",
-              "yoy_growth_pct"
+              "yoy_growth_pct",
+              "population_june_2025",
+              "spend_per_resident_aud"
             ]
           }
         }
       ],
       "mark": {
         "type": "circle",
-        "opacity": 0.78,
+        "opacity": 0.83,
         "stroke": "#ffffff",
         "strokeWidth": 1.5,
-        "color": "#c84b31"
+        "color": "#267c85"
       },
       "encoding": {
         "longitude": {
@@ -59,33 +61,50 @@
           "type": "quantitative"
         },
         "size": {
-          "field": "online_spend_billion",
+          "field": "spend_per_resident_aud",
           "type": "quantitative",
-          "title": "Online spend ($bn)",
+          "title": "2025 online spend per resident (AUD)",
           "scale": {
+            "type": "sqrt",
+            "domainMin": 0,
             "range": [
               100,
-              2600
+              2200
             ]
+          },
+          "legend": {
+            "values": [
+              1000,
+              2000,
+              3000
+            ],
+            "title": "Online spending per resident (A$)",
+            "format": ",.0f",
+            "symbolStrokeColor": "#ffffff"
           }
         },
         "tooltip": [
           {
             "field": "state_name",
-            "type": "nominal",
             "title": "State / territory"
+          },
+          {
+            "field": "spend_per_resident_aud",
+            "type": "quantitative",
+            "title": "Online spend / resident",
+            "format": "$,.0f"
           },
           {
             "field": "online_spend_billion",
             "type": "quantitative",
-            "title": "Online spend ($bn)",
+            "title": "State online spend ($bn)",
             "format": ".1f"
           },
           {
-            "field": "yoy_growth_pct",
+            "field": "population_june_2025",
             "type": "quantitative",
-            "title": "YoY growth",
-            "format": ".0f"
+            "title": "Population (Jun 2025)",
+            "format": ",.0f"
           }
         ]
       }

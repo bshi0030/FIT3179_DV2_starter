@@ -46,6 +46,21 @@
           "padding": 3
         }
       ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1 && isValid(datum.online_spend_billion) && datum.online_spend_billion > 0"
+        },
+        {
+          "type": "formula",
+          "as": "short_label",
+          "expr": "datum.category === 'Hobbies & recreation' ? 'Hobbies' : datum.category === 'Books, stationery & multimedia' ? 'Books' : datum.category"
+        }
+      ]
     }
   ],
   "scales": [
@@ -57,8 +72,8 @@
         25
       ],
       "range": [
-        "#f3d8cb",
-        "#c84b31"
+        "#e2f2eb",
+        "#15736e"
       ],
       "nice": true,
       "zero": false
@@ -68,13 +83,7 @@
     {
       "type": "rect",
       "from": {
-        "data": "tree",
-        "transform": [
-          {
-            "type": "filter",
-            "expr": "datum.depth === 1"
-          }
-        ]
+        "data": "leaves"
       },
       "encode": {
         "enter": {
@@ -119,13 +128,7 @@
     {
       "type": "text",
       "from": {
-        "data": "tree",
-        "transform": [
-          {
-            "type": "filter",
-            "expr": "datum.depth === 1"
-          }
-        ]
+        "data": "leaves"
       },
       "encode": {
         "enter": {
@@ -148,30 +151,29 @@
             "value": 700
           },
           "fill": {
-            "value": "#202020"
+            "value": "#173744"
           },
           "fontSize": {
-            "signal": "max(10, min(15, (datum.x1-datum.x0)/8))"
+            "value": 11
           },
           "text": {
-            "field": "category"
+            "field": "short_label"
           },
           "limit": {
-            "signal": "max(55, datum.x1-datum.x0-12)"
+            "signal": "max(0,datum.x1-datum.x0-18)"
           }
-        }
+        },
+        "update": {
+            "opacity": {
+              "signal": "(datum.x1-datum.x0)>35 && (datum.y1-datum.y0)>35 ? 1 : 0"
+            }
+          }
       }
     },
     {
       "type": "text",
       "from": {
-        "data": "tree",
-        "transform": [
-          {
-            "type": "filter",
-            "expr": "datum.depth === 1"
-          }
-        ]
+        "data": "leaves"
       },
       "encode": {
         "enter": {
@@ -191,13 +193,21 @@
             "value": "DM Sans"
           },
           "fill": {
-            "value": "#202020"
+            "value": "#173744"
           },
           "fontSize": {
-            "value": 12
+            "value": 11
           },
           "text": {
             "signal": "'$' + format(datum.online_spend_billion, '.1f') + 'b'"
+          },
+          "limit": {
+            "signal": "max(0,datum.x1-datum.x0-18)"
+          }
+        },
+        "update": {
+          "opacity": {
+            "signal": "(datum.x1-datum.x0)>35 && (datum.y1-datum.y0)>35 ? 1 : 0"
           }
         }
       }

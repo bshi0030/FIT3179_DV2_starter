@@ -1,16 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Annual Australian household spending by category, 2013-2025.",
+  "description": "Percentage point change in category share of nine-category household spending since 2013; annual nominal composition.",
   "width": "container",
   "height": 360,
   "data": {
-    "url": "data/abs_category_spending.csv"
+    "url": "data/abs_category_share.csv"
   },
-  "transform": [
-    {
-      "filter": "datum.year >= '2013' && datum.year <= '2025'"
-    }
-  ],
   "mark": {
     "type": "rect",
     "cornerRadius": 2
@@ -41,31 +36,35 @@
       ]
     },
     "color": {
-      "aggregate": "sum",
-      "field": "spending_million",
+      "field": "share_change_pp_since_2013",
       "type": "quantitative",
-      "title": "Annual spend ($m)",
+      "title": "Change in share (pp)",
       "scale": {
-        "scheme": "oranges"
+        "scheme": "redblue",
+        "domainMid": 0,
+        "reverse": true
       }
     },
     "tooltip": [
       {
         "field": "year",
-        "type": "ordinal",
         "title": "Year"
       },
       {
         "field": "category",
-        "type": "nominal",
         "title": "Category"
       },
       {
-        "aggregate": "sum",
-        "field": "spending_million",
+        "field": "share_pct",
         "type": "quantitative",
-        "title": "Annual spending ($m)",
-        "format": ",.0f"
+        "title": "Share (%)",
+        "format": ".1f"
+      },
+      {
+        "field": "share_change_pp_since_2013",
+        "type": "quantitative",
+        "title": "Change vs 2013 (pp)",
+        "format": "+.2f"
       }
     ]
   },

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Discretionary versus non-discretionary household spending in Australia.",
+  "description": "Relative discretionary and non-discretionary shares of total monthly household expenditure.",
   "width": "container",
   "height": 350,
   "data": {
@@ -20,6 +20,10 @@
     {
       "calculate": "datum.spending_type === 'discretionary_million' ? 'Discretionary' : 'Non-discretionary'",
       "as": "type_label"
+    },
+    {
+      "calculate": "datum.spending_million / datum.total_million * 100",
+      "as": "share_pct"
     }
   ],
   "mark": {
@@ -38,11 +42,14 @@
       }
     },
     "y": {
-      "field": "spending_million",
+      "field": "share_pct",
       "type": "quantitative",
-      "title": "Household spending ($ million)",
-      "axis": {
-        "format": ",.0f"
+      "title": "Share of household spending (%)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
       }
     },
     "color": {
@@ -51,8 +58,8 @@
       "title": null,
       "scale": {
         "range": [
-          "#c84b31",
-          "#476a6f"
+          "#267c85",
+          "#64788e"
         ]
       }
     },
@@ -65,14 +72,13 @@
       },
       {
         "field": "type_label",
-        "type": "nominal",
-        "title": "Spending type"
+        "title": "Type"
       },
       {
-        "field": "spending_million",
+        "field": "share_pct",
         "type": "quantitative",
-        "title": "Spending ($m)",
-        "format": ",.1f"
+        "title": "Share (%)",
+        "format": ".1f"
       }
     ]
   },

@@ -1,51 +1,112 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Normalised generational shopping profiles using four Australia Post eCommerce measures.",
+  "description": "Generational shopping comparison; colour is a within-metric 0-100 relative score, with actual values labelled. Do not compare colour magnitudes across measures as raw units.",
   "width": "container",
-  "height": 430,
-  "data": {"url": "data/auspost_generation_profiles.csv"},
-  "params": [
+  "height": 325,
+  "data": {
+    "url": "data/auspost_generation_profiles.csv"
+  },
+  "layer": [
     {
-      "name": "highlightGeneration",
-      "select": {"type": "point", "fields": ["generation"], "on": "click", "clear": "dblclick"}
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 4,
+        "stroke": "white",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "normalized_score",
+          "type": "quantitative",
+          "title": "Position within measure",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ],
+            "range": [
+              "#eaf4f2",
+              "#176b75"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "generation",
+            "title": "Generation"
+          },
+          {
+            "field": "metric",
+            "title": "Measure"
+          },
+          {
+            "field": "display_value",
+            "title": "Observed value"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "display_value"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.normalized_score >= 62",
+            "value": "#ffffff"
+          },
+          "value": "#1e3440"
+        }
+      }
     }
   ],
-  "mark": {"type": "line", "point": {"filled": true, "size": 75}, "strokeWidth": 2.8},
   "encoding": {
     "x": {
       "field": "metric",
-      "type": "ordinal",
-      "sort": {"field": "metric_order", "op": "min"},
+      "type": "nominal",
+      "sort": [
+        "Weekly online shopping",
+        "Online share of spend",
+        "Total online spend",
+        "Average basket size"
+      ],
       "title": null,
-      "axis": {"labelAngle": 0, "labelLimit": 180, "grid": false}
+      "axis": {
+        "labelAngle": 0,
+        "labelLimit": 155
+      }
     },
     "y": {
-      "field": "normalized_score",
-      "type": "quantitative",
-      "title": "Relative position within each measure",
-      "scale": {"domain": [0, 100]},
-      "axis": {"values": [0, 25, 50, 75, 100], "labelExpr": "datum.value == 0 ? 'Lowest' : datum.value == 100 ? 'Highest' : ''"}
-    },
-    "color": {
       "field": "generation",
       "type": "nominal",
-      "title": "Generation",
-      "scale": {"range": ["#d95b43", "#4f8fb9", "#5f8f78", "#9a6f91", "#b88a4a"]}
-    },
-    "opacity": {
-      "condition": {"param": "highlightGeneration", "value": 1},
-      "value": 0.35
-    },
-    "detail": {"field": "generation"},
-    "tooltip": [
-      {"field": "generation", "title": "Generation"},
-      {"field": "metric", "title": "Measure"},
-      {"field": "display_value", "title": "Actual value"}
-    ]
+      "sort": [
+        "Gen Z",
+        "Millennials",
+        "Gen X",
+        "Baby Boomers",
+        "Builders"
+      ],
+      "title": null
+    }
   },
   "config": {
-    "view": {"stroke": null},
-    "axis": {"labelFont": "DM Sans", "titleFont": "DM Sans", "labelFontSize": 11, "titleFontSize": 12},
-    "legend": {"labelFont": "DM Sans", "titleFont": "DM Sans", "orient": "bottom"}
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans"
+    }
   }
 }

@@ -1,21 +1,38 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
+  "description": "Australian household spending, CPI-deflated into 2025 dollars, with optional nominal comparison.",
   "width": "container",
-  "height": 360,
-
+  "height": 365,
   "data": {
     "url": "data/abs_total_spending.csv"
   },
-
+  "params": [
+    {
+      "name": "spendingView",
+      "value": "Inflation-adjusted (2025 dollars)",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Inflation-adjusted (2025 dollars)",
+          "Nominal (current dollars)"
+        ],
+        "name": "View: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "spendingView === 'Inflation-adjusted (2025 dollars)' ? datum.real_total_2025_million : datum.total_million",
+      "as": "display_spending"
+    }
+  ],
   "layer": [
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 2.5,
-        "color": "#4778ad"
+        "strokeWidth": 3,
+        "color": "#376c80"
       },
-
       "encoding": {
         "x": {
           "field": "date",
@@ -23,17 +40,18 @@
           "title": null,
           "axis": {
             "format": "%Y",
-            "labelAngle": 0,
-            "grid": false
+            "grid": false,
+            "labelAngle": 0
           }
         },
-
         "y": {
-          "field": "total_million",
+          "field": "display_spending",
           "type": "quantitative",
-          "title": "Household spending ($ million)"
+          "title": "Monthly household spending (A$ million)",
+          "axis": {
+            "format": ",.0f"
+          }
         },
-
         "tooltip": [
           {
             "field": "date",
@@ -42,21 +60,34 @@
             "format": "%B %Y"
           },
           {
-            "field": "total_million",
+            "field": "real_total_2025_million",
             "type": "quantitative",
-            "title": "Spending ($m)",
+            "title": "2025-dollar spending (A$m)",
             "format": ",.1f"
           },
           {
-            "field": "total_yoy_pct",
+            "field": "total_million",
             "type": "quantitative",
-            "title": "YoY change",
-            "format": ".1f"
+            "title": "Nominal spending (A$m)",
+            "format": ",.1f"
+          },
+          {
+            "field": "cpi_australia",
+            "type": "quantitative",
+            "title": "All-groups CPI",
+            "format": ".2f"
+          },
+          {
+            "field": "cpi_quarter",
+            "title": "CPI quarter"
+          },
+          {
+            "field": "cpi_carried_forward",
+            "title": "Most recent quarter carried forward"
           }
         ]
       }
     },
-
     {
       "data": {
         "values": [
@@ -65,13 +96,15 @@
           }
         ]
       },
-
       "mark": {
         "type": "rule",
-        "strokeDash": [5, 5],
+        "strokeDash": [
+          5,
+          5
+        ],
+        "strokeWidth": 1.5,
         "color": "#c84b31"
       },
-
       "encoding": {
         "x": {
           "field": "date",
@@ -79,49 +112,52 @@
         }
       }
     },
-
     {
       "data": {
         "values": [
           {
             "date": "2020-04-01",
-            "value": 43000,
-            "label": "2020 spending disruption"
+            "label": "2020 pandemic disruption"
           }
         ]
       },
-
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 8,
-        "dy": -8,
+        "baseline": "bottom",
+        "dx": 10,
+        "dy": -6,
         "fontSize": 12,
         "fontWeight": "bold",
-        "color": "#c84b31"
+        "color": "#ae5037"
       },
-
       "encoding": {
         "x": {
           "field": "date",
           "type": "temporal"
         },
-
         "y": {
-          "field": "value",
+          "datum": 74000,
           "type": "quantitative"
         },
-
         "text": {
           "field": "label"
         }
-      }
+      },
+      "transform": []
     }
   ],
-
   "config": {
     "view": {
       "stroke": null
+    },
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11
+    },
+    "title": {
+      "font": "DM Sans"
     }
   }
 }

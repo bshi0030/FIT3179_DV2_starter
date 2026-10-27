@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Share expressing interest in each type of second-hand item. These percentages need not sum to 100.",
+  "width": "container",
+  "height": 245,
+  "data": {
+    "url": "data/auspost_secondhand.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3,
+    "color": "#267c85"
+  },
+  "encoding": {
+    "y": {
+      "field": "category",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    },
+    "x": {
+      "field": "would_buy_secondhand_pct",
+      "type": "quantitative",
+      "title": "Interest in buying second-hand (%)",
+      "scale": {
+        "domain": [
+          0,
+          50
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "category"
+      },
+      {
+        "field": "would_buy_secondhand_pct",
+        "title": "Interested (%)"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "DM Sans",
+      "labelFontSize": 12
+    }
+  }
+}

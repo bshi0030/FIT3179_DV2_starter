@@ -13,3 +13,6 @@ vegaEmbed('#chart07', 'charts/chart07_hotspots_map.vg.json', embedOptions).catch
 vegaEmbed('#chart08', 'charts/chart08_online_categories_treemap.vg.json', embedOptions).catch(console.error);
 vegaEmbed('#chart09', 'charts/chart09_generation_profiles.vg.json', embedOptions).catch(console.error);
 vegaEmbed('#chart10', 'charts/chart10_channel_by_generation.vg.json', embedOptions).catch(console.error);
+
+vegaEmbed('#chart11', 'charts/chart11_secondhand_waffle.vg.json', embedOptions).catch(console.error);
+vegaEmbed('#chart12', 'charts/chart12_secondhand_categories.vg.json', embedOptions).catch(console.error);

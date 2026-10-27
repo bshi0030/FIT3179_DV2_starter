@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "46 out of 100 symbols represent the reported 46% of Australians buying second-hand items annually; schematic unit chart, not respondents.",
+  "width": 460,
+  "height": 370,
+  "data": {
+    "url": "data/auspost_secondhand_waffle.csv"
+  },
+  "mark": {
+    "type": "square",
+    "filled": true,
+    "size": 950,
+    "cornerRadius": 3
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.05,
+        "paddingOuter": 0.05
+      }
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null,
+      "sort": "ascending",
+      "scale": {
+        "paddingInner": 0.05,
+        "paddingOuter": 0.05
+      }
+    },
+    "color": {
+      "condition": {
+        "test": "datum.buyer == 'True'",
+        "value": "#267c85"
+      },
+      "value": "#dce3df"
+    },
+    "tooltip": [
+      {
+        "field": "buyer",
+        "title": "Represents second-hand buyer"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
